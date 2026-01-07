@@ -1,6 +1,5 @@
 package online.jayashan.Skill_Mentor.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,23 +8,30 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "subject")
+@Table(name = "student")
 @Data
-public class Subject {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @Column(nullable = false, name = "subject_name", length = 20)
-    private String subjectName;
+    @Column(length = 100, unique = true, nullable = false)
+    private String email;
 
-    @Column(nullable = false)
-    private String description;
+    @Column(name = "first_name", length = 50, nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", length = 50, nullable = false)
+    private String lastName;
+
+    @Column(name = "learning_goals", columnDefinition = "TEXT")
+    private String learningGoals;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -35,9 +41,7 @@ public class Subject {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mentor_id", nullable = false)
-    @JsonIgnore
-    private Mentor mentor;
-}
+    @OneToMany(mappedBy = "student")
+    private List<Session> sessions;
 
+}
