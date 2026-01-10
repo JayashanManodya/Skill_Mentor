@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import online.jayashan.Skill_Mentor.entities.Mentor;
 import online.jayashan.Skill_Mentor.repositories.MentorRepository;
 import online.jayashan.Skill_Mentor.services.MentorService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +22,8 @@ public class MentorServiceImpl implements MentorService {
     }
 
     @Override
-    public List<Mentor> getAllMentors() {
-        return mentorRepository.findAll();
+    public Page<Mentor> getAllMentors(Pageable pageable) {
+        return mentorRepository.findAll(pageable);
     }
 
     @Override

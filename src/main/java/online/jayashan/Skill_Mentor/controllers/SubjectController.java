@@ -7,6 +7,8 @@ import online.jayashan.Skill_Mentor.dto.SubjectDTO;
 import online.jayashan.Skill_Mentor.entities.Subject;
 import online.jayashan.Skill_Mentor.services.SubjectService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,13 +16,14 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/v1/subjects")
 @RequiredArgsConstructor
-public class SubjectController {
+public class SubjectController extends AbstractController{
     private final ModelMapper modelMapper;
     private final SubjectService subjectService;
 
     @GetMapping
-    public List<Subject> getAllSubjects() {
-        return subjectService.getAllSubjects();
+    public Page<Subject> getAllSubjects(Pageable pageable) {
+
+        return subjectService.getAllSubjects(pageable);
     }
 
     @GetMapping("{id}")

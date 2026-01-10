@@ -8,6 +8,8 @@ import online.jayashan.Skill_Mentor.repositories.MentorRepository;
 import online.jayashan.Skill_Mentor.repositories.SubjectRepository;
 import online.jayashan.Skill_Mentor.services.SubjectService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +20,8 @@ public class SubjectServiceImpl implements SubjectService {
     private final ModelMapper modelMapper;
     private final MentorRepository mentorRepository;
 
-    public List<Subject> getAllSubjects(){
-        return subjectRepository.findAll();
+    public Page<Subject> getAllSubjects(Pageable pageable){
+        return subjectRepository.findAll(pageable);
     }
 
     @Override
