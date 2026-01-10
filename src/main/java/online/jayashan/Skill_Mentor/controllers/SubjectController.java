@@ -31,7 +31,7 @@ public class SubjectController {
     @PostMapping
     public Subject createSubject(@Valid @RequestBody SubjectDTO subjectDTO) {
         Subject subject = modelMapper.map(subjectDTO, Subject.class);
-        return subjectService.addNewSubject(subjectDTO.getMentorId(), subject);
+        return subjectService.createSubject(subject);
     }
 
     @PutMapping("{id}")

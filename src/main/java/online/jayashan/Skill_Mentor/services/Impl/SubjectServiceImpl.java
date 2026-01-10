@@ -1,6 +1,7 @@
 package online.jayashan.Skill_Mentor.services.Impl;
 
 import lombok.RequiredArgsConstructor;
+import online.jayashan.Skill_Mentor.dto.SubjectDTO;
 import online.jayashan.Skill_Mentor.entities.Mentor;
 import online.jayashan.Skill_Mentor.entities.Subject;
 import online.jayashan.Skill_Mentor.repositories.MentorRepository;

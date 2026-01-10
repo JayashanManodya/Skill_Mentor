@@ -25,7 +25,7 @@ public class Subject {
     private String subjectName;
 
     @Column(nullable = false)
-    private String description;
+        private String description;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
