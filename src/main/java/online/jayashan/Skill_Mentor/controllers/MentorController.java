@@ -23,7 +23,7 @@ public class MentorController extends AbstractController{
 
 
     @GetMapping
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('Admin')")
     public ResponseEntity<Page<Mentor>> getAllMentors(Pageable pageable) {
         Page<Mentor> mentors = mentorService.getAllMentors(pageable);
         return sendOkResponse(mentors);
