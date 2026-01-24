@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class MentorController extends AbstractController{
 
 
     @GetMapping
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Page<Mentor>> getAllMentors(Pageable pageable) {
         Page<Mentor> mentors = mentorService.getAllMentors(pageable);
         return sendOkResponse(mentors);
@@ -34,6 +36,7 @@ public class MentorController extends AbstractController{
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('Admin')")
     public ResponseEntity<Mentor> createMentor(@Valid @RequestBody MentorDTO mentorDTO) {
         Mentor mentor = modelMapper.map(mentorDTO, Mentor.class);
         Mentor createdMentor = mentorService.createNewMentor(mentor);

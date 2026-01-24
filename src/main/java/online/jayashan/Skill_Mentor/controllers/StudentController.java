@@ -9,6 +9,7 @@ import online.jayashan.Skill_Mentor.services.StudentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -21,6 +22,7 @@ public class StudentController extends AbstractController{
     private final ModelMapper modelMapper;
 
     @GetMapping
+    @PreAuthorize("isAuthenticated()")
     public Page<Student> getAllStudents(Pageable pageable) {
         return studentService.getAllStudents(pageable);
     }
