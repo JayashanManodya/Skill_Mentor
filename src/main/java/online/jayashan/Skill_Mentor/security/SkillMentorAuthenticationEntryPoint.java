@@ -19,7 +19,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Component
 public class SkillMentorAuthenticationEntryPoint implements AuthenticationEntryPoint {
-
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
